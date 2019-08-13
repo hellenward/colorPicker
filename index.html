@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Color Picker</title>
+    <link rel="stylesheet" href="style.css"></link>
+  </head>
+
+  <body>
+    <div class="columns">
+
+      <div class="leftColumn">
+        <h2>Pick Color from Image</h2>
+        <canvas id="canvas" width="400" height="300" style="width: 400px; height: 300px;"></canvas>
+        <div class="colorOutput">
+          <figure class="resultBox"></figure>
+          <div>
+            <h3 class="resultBoxText">Selected Color Code</h3>
+            <p class="hexP"> </p>
+            <p class="RGBP"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rightColumn">
+        <form>
+          <h3>Upload Your Image</h3>
+          <p>Select an image from your computer</p>
+          <input type="file" name="file" id="file" accept="image/*">
+        </form>
+        <div class="colorOutput">
+          <figure class="hoverBox"></figure>
+          <div>
+            <h3 class="hoverBoxText">Selected Color Code</h3>
+            <p class="hexPHover"> </p>
+            <p class="RGBPHover"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="script.js"></script>
+  </body>
+
+</html>
