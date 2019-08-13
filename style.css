@@ -30,3 +30,8 @@
 canvas {
   border: 2px solid;
 }
+
+body {
+  background-color: pink;
+  font-family: sans-serif;
+}
