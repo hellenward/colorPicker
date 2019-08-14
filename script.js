@@ -48,6 +48,8 @@ canvas.onclick=function(event) {
   document.querySelector(".RGBP").innerText = `RGBA: ${rgba}`;
   document.querySelector(".hexP").innerText = `Hex: ${RGBToHex(red, green, blue)}`;
   toShow.forEach(function(element) {element.classList.remove('hidden')});
+  const historyInsert = document.querySelector('.history');
+  historyInsert.insertAdjacentHTML('afterend', `<div class="historyStyling"></div>`);
 }
 
 canvas.onmousemove=function(event) {
