@@ -42,10 +42,12 @@ canvas.onclick=function(event) {
   const green = myImageData.data[1];
   const blue = myImageData.data[2];
   const alpha = myImageData.data[3];
-  const rgba = `rgb(${red}, ${green}, ${blue})`
+  const rgba = `rgb(${red}, ${green}, ${blue})`;
+  const toShow = document.querySelectorAll(".hidden");
   document.querySelector(".resultBox").style.backgroundColor = rgba;
   document.querySelector(".RGBP").innerText = `RGBA: ${rgba}`;
   document.querySelector(".hexP").innerText = `Hex: ${RGBToHex(red, green, blue)}`;
+  toShow.forEach(function(element) {element.classList.remove('hidden')});
 }
 
 canvas.onmousemove=function(event) {
