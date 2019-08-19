@@ -37,6 +37,7 @@ document.getElementById('file').onchange=function(event) {
   reader.readAsDataURL(file);
 }
 
+
 canvas.onclick=function(event) {
   const myImageData = ctx.getImageData(event.offsetX, event.offsetY, 1, 1);
   const red = myImageData.data[0];
@@ -50,9 +51,10 @@ canvas.onclick=function(event) {
   document.querySelector(".hexP").innerText = `Hex: ${RGBToHex(red, green, blue)}`;
   toShow.forEach(function(element) {element.classList.remove('hidden')});
   const historyInsert = document.querySelector('.history');
-  historyInsert.insertAdjacentHTML('afterend', `<div class="historyStyling" style="background-color:${RGBToHex(red, green, blue)}"></div>`);
-//  const remembered = {rgba: rgba, hex: RGBToHex(red, green, blue)};
-//  historyArray.push(remembered);
+  historyInsert.insertAdjacentHTML('afterend', `<div class="historyStyling" title="${RGBToHex(red, green, blue)} ${rgba}" style="background-color:${RGBToHex(red, green, blue)}"></div>`);
+//  const lastHistoryStylingList = document.querySelectorAll(".historyStyling");
+//  const lastHistoryStyling = lastHistoryStylingList.item(lastHistoryStylingList.length-1);
+//  console.log(lastHistoryStyling);
 }
 
 canvas.onmousemove=function(event) {
