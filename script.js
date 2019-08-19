@@ -1,5 +1,6 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const historyArray = [];
 
 function makeImage(image) {
   const base_image = new Image();
@@ -37,7 +38,7 @@ document.getElementById('file').onchange=function(event) {
 }
 
 canvas.onclick=function(event) {
-  var myImageData = ctx.getImageData(event.offsetX, event.offsetY, 1, 1);
+  const myImageData = ctx.getImageData(event.offsetX, event.offsetY, 1, 1);
   const red = myImageData.data[0];
   const green = myImageData.data[1];
   const blue = myImageData.data[2];
@@ -48,8 +49,10 @@ canvas.onclick=function(event) {
   document.querySelector(".RGBP").innerText = `RGBA: ${rgba}`;
   document.querySelector(".hexP").innerText = `Hex: ${RGBToHex(red, green, blue)}`;
   toShow.forEach(function(element) {element.classList.remove('hidden')});
-  const historyInsert = document.querySelector('.historyStyling');
-  historyInsert.insertAdjacentHTML('afterend', `<div class="historyStyling"></div>`);
+  const historyInsert = document.querySelector('.history');
+  historyInsert.insertAdjacentHTML('afterend', `<div class="historyStyling" style="background-color:${RGBToHex(red, green, blue)}"></div>`);
+//  const remembered = {rgba: rgba, hex: RGBToHex(red, green, blue)};
+//  historyArray.push(remembered);
 }
 
 canvas.onmousemove=function(event) {
