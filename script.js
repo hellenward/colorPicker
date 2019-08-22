@@ -51,10 +51,18 @@ canvas.onclick=function(event) {
   document.querySelector(".hexP").innerText = `Hex: ${RGBToHex(red, green, blue)}`;
   toShow.forEach(function(element) {element.classList.remove('hidden')});
   const historyInsert = document.querySelector('.history');
-  historyInsert.insertAdjacentHTML('afterend', `<div class="historyStyling" title="${RGBToHex(red, green, blue)} ${rgba}" style="background-color:${RGBToHex(red, green, blue)}"></div>`);
-//  const lastHistoryStylingList = document.querySelectorAll(".historyStyling");
-//  const lastHistoryStyling = lastHistoryStylingList.item(lastHistoryStylingList.length-1);
-//  console.log(lastHistoryStyling);
+  historyInsert.insertAdjacentHTML(
+    'afterend',
+    `<div class="historyStyling copyRgb" onclick="copyToClipboard()" title="${RGBToHex(red, green, blue)} ${rgba}" style="background-color:${RGBToHex(red, green, blue)}"></div>
+    <input type="text" value=${RGBToHex(red, green, blue)} class="toCopyRGBA">`);
+}
+
+function copyToClipboard() {
+  var textToBeCopied = document.querySelectorAll("toCopyRGBA");
+  console.log(textToBeCopied);
+  textToBeCopied.select();
+  document.execCommand("copy");
+  alert("Copied " + textToBeCopied.value);
 }
 
 canvas.onmousemove=function(event) {
