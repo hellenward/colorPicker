@@ -53,16 +53,30 @@ canvas.onclick=function(event) {
   const historyInsert = document.querySelector('.history');
   historyInsert.insertAdjacentHTML(
     'afterend',
-    `<div class="historyStyling copyRgb" onclick="copyToClipboard()" title="${RGBToHex(red, green, blue)} ${rgba}" style="background-color:${RGBToHex(red, green, blue)}"></div>
-    <input type="text" value=${RGBToHex(red, green, blue)} class="toCopyRGBA">`);
+    `<div
+      class="historyStyling copyRgb"
+      title="${RGBToHex(red, green, blue)} ${rgba}"
+      data-hex="${RGBToHex(red, green, blue)}"
+      style="background-color:${RGBToHex(red, green, blue)}"
+    >
+    </div>`);
+    const insertedList = document.querySelectorAll('.copyRgb');
+    const lastInserted = insertedList[0];
+    console.log(lastInserted);
+    lastInserted.onclick=copyToClipboard;
 }
 
-function copyToClipboard() {
-  var textToBeCopied = document.querySelectorAll("toCopyRGBA");
-  console.log(textToBeCopied);
-  textToBeCopied.select();
+function copyToClipboard(event) {
+  const historyInsert = document.body;
+  historyInsert.insertAdjacentHTML(
+    'afterend',
+    `<textarea class="copyText">${event.currentTarget.dataset.hex}</textarea>`
+  )
+  const textCopyArea = document.querySelector(".copyText");
+  textCopyArea.select();
   document.execCommand("copy");
-  alert("Copied " + textToBeCopied.value);
+  alert("Copied " + textCopyArea.value);
+  textCopyArea.parentNode.removeChild(textCopyArea);
 }
 
 canvas.onmousemove=function(event) {
