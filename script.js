@@ -72,6 +72,18 @@ canvas.onclick=function(event) {
     lastInserted.onclick=copyToClipboard;
 }
 
+function fadeIn(el) {
+  el.classList.add('show');
+  el.classList.remove('hide');
+};
+
+function fadeOut(el) {
+  setTimeout(function() {
+    el.classList.add('hide');
+    el.classList.remove('show');
+  }, 1500)
+};
+
 function copyToClipboard(event) {
   const historyInsert = document.body;
   historyInsert.insertAdjacentHTML(
@@ -81,9 +93,10 @@ function copyToClipboard(event) {
   const textCopyArea = document.querySelector(".copyText");
   textCopyArea.select();
   document.execCommand("copy");
-  alert("Copied " + textCopyArea.value);
   textCopyArea.parentNode.removeChild(textCopyArea);
-  $("div.alert-box-copy").fadeIn(300).delay(400).fadeOut(300);
+  const alertBox = document.querySelector('.alertboxCopy');
+  fadeIn(alertBox);
+  fadeOut(alertBox);
 }
 
 canvas.onmousemove=function(event) {
