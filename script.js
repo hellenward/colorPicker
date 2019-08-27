@@ -6,7 +6,13 @@ function makeImage(image) {
   const base_image = new Image();
   base_image.src = image;
   base_image.onload = function() {
-    ctx.drawImage(base_image, 0, 0, 400, 300);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const imageRatio = base_image.width/base_image.height;
+    if(base_image.width > base_image.height) {
+      ctx.drawImage(base_image, 0, (404-404/imageRatio)/2, 404, 404/imageRatio);
+    } else {
+      ctx.drawImage(base_image, (404-404*imageRatio)/2, 0, 404*imageRatio, 404);
+    }
   }
 }
 
@@ -77,6 +83,7 @@ function copyToClipboard(event) {
   document.execCommand("copy");
   alert("Copied " + textCopyArea.value);
   textCopyArea.parentNode.removeChild(textCopyArea);
+  $("div.alert-box-copy").fadeIn(300).delay(400).fadeOut(300);
 }
 
 canvas.onmousemove=function(event) {
