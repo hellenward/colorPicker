@@ -57,6 +57,7 @@ canvas.onclick=function(event) {
   document.querySelector(".hexP").innerText = `Hex: ${RGBToHex(red, green, blue)}`;
   toShow.forEach(function(element) {element.classList.remove('hidden')});
   const historyInsert = document.querySelector('.history');
+  historyInsert.classList.remove("hidden");
   historyInsert.insertAdjacentHTML(
     'afterend',
     `<div
